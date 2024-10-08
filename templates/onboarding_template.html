@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Letter</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px;
+            line-height: 1.7;
+            color: #333;
+            font-size: 14px;  /* Reduced font size to fit more content on the page */
+        }
+
+        h1, h2, h3 { 
+            color: #231093;
+            font-weight: bold;
+            font-size: 16px;  /* Reduced heading sizes */
+            margin-bottom: 10px;
+        }
+
+        p { 
+            margin: 8px 0;
+        }
+
+        .csv-input {
+            color: #000078;
+            font-weight: bold;
+        }
+
+        .signature {
+            margin-top: 15px;
+        }
+
+        img.signature {
+            width: 150px;  /* Reduced image size */
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .table-layout {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .table-layout td, .table-layout th {
+            border: 1px solid #ccc;
+            padding: 6px;  /* Reduced padding in table cells */
+            text-align: left;
+            font-size: 12px;  /* Reduced font size in tables */
+        }
+
+        .table-layout th {
+            background-color: #f0f8ff;
+            color: #231093;
+            font-weight: bold;
+        }
+
+        .page-content {
+            padding: 30px 0;  /* Reduced padding to conserve space */
+        }
+
+        .intro-message {
+            font-size: 15px;  /* Reduced size of the introductory message */
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .footer-message {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-content">
+        <p class="intro-message">"Willkommen im Team! Wir sind begeistert, Sie auf dieser spannenden Reise an unserer Seite zu haben."</p>
+
+        <!-- Use the full name in the salutation -->
+        <p>Sehr geehrte/r <span class="csv-input">{{VORNAME}} {{NACHNAME}}</span>,</p>
+
+        <p>Wir freuen uns riesig, Sie als unsere/n neue/n <span class="csv-input">{{BERUFSBEZEICHNUNG}}</span> in der Abteilung <span class="csv-input">{{ABTEILUNG}}</span> begrüßen zu dürfen. Ihr Arbeitsvertrag beginnt am <span class="csv-input">{{VERTRAGSBEGINN}}</span>. Der Termin für die Übergabe der benötigten Arbeitsmittel ist für den <span class="csv-input">{{UEBERGABEDATUM}}</span> vorgesehen. Ihre dienstliche E-Mail-Adresse lautet: <span class="csv-input">{{EMAIL}}</span></p>
+        
+        <p>Mit Ihnen gemeinsam werden wir großartige Dinge erreichen!</p>
+
+        <h3>Ihre Arbeitsgeräte</h3>
+        <table class="table-layout">
+            <thead>
+                <tr>
+                    <th>Arbeitsgerät</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in ARBEITSGERÄTE_LIST %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Zugänge und Rollen</h3>
+        <table class="table-layout">
+            <thead>
+                <tr>
+                    <th>Zugang</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in ZUGAENGE_LIST %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Benötigte Software</h3>
+        <table class="table-layout">
+            <thead>
+                <tr>
+                    <th>Software</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in SOFTWARE_LIST %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Liste der Konten</h3>
+        <table class="table-layout">
+            <thead>
+                <tr>
+                    <th>Konten</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in ACCOUNT_LIST %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Drucker im Büro</h3>
+        <table class="table-layout">
+            <thead>
+                <tr>
+                    <th>Drucker</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in STANDARD_RESSOURCEN %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>TUBS-Telefon</h3>
+        <table class="table-layout">
+            <thead>
+                <tr>
+                    <th>Direktwahl-Nr.</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in TELEFONNUMMER %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        
+        <h3>Unterschrift:</h3>
+        <img src="{{UNTERSCHRIFT}}" alt="Unterschrift" class="signature">
+        
+        <p class="footer-message">Nochmals herzlich willkommen! Zögern Sie nicht, uns bei Fragen jederzeit zu kontaktieren. Wir freuen uns darauf, gemeinsam mit Ihnen durchzustarten!</p>
+    </div>
+</body>
+</html>

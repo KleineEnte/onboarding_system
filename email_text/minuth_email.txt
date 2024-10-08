@@ -1,0 +1,16 @@
+Subject: New Key Request for Onboarding Employee
+
+Hello Minuth,
+
+We have a new employee who requires a key (Schlüssel) as part of their onboarding process.
+
+Please proceed with creating and providing the necessary key for the following employee:
+
+Employee Name: {{VORNAME}} {{NACHNAME}}
+Department: {{ABTEILUNG}}
+Start Date: {{VERTRAGSBEGINN}}
+
+If you have any questions or need further details, feel free to reach out.
+
+Best regards,  
+The Onboarding Team
