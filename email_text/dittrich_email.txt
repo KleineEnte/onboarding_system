@@ -1,10 +1,10 @@
-Subject: Neuer Schlüssel für Mitarbeiter/in
+Subject: HR Works Zugriff für neue/n Mitarbeiter/in
 
-Hello Carola,
+Hello Stefanie,
 
 Es ist wieder soweit. Zuwachs!
 
-Könntest du dich bitte um die Beantragung eines neuen Schlüssels mit den folgenden Daten kümmern:
+Könntest du deshalb bitte ein HR Works Konto mit den folgenden Daten erstellen:
 
 Name: {{VORNAME}} {{NACHNAME}}
 Abteilung: {{ABTEILUNG}}
