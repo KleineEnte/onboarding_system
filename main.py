@@ -19,6 +19,10 @@ import re
 # Load environment variables from .env file
 load_dotenv(dotenv_path=Path(__file__).parent / 'env' / '.env')
 
+# Load the sync interval from the environment or set a default (in seconds)
+SYNC_INTERVAL = int(os.getenv('SYNC_INTERVAL', 60))  # Default is 60 seconds
+
+
 # Retrieve secret credentials and directories from environment variables
 IMAP_SERVER = os.getenv('IMAP_SERVER')
 SMTP_SERVER = os.getenv('SMTP_SERVER')
@@ -273,4 +277,4 @@ def countdown_timer(seconds):
 # Continuously check for new emails every 30 seconds
 while True:
     check_email_for_csv()
-    countdown_timer(30)
+    countdown_timer(SYNC_INTERVAL)
