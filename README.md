@@ -95,21 +95,40 @@ To manually run the synchronization and CSV processing:
 
 ```bash
 python sync_script.py
+python main.py
 ```
 
 ### Creating Systemd Service Units
 
 To continuously run the synchronization and processing in the background, create systemd service units.
 
-#### Step 1: Create the `nextcloud-sync.service` Unit
+#### Step 1: Create the `onboarding-system.service` and `nextcloud-sync.service` Unit
 
 1. Create a service file:
 
 ```bash
+sudo nano /etc/systemd/system/onboarding-system.service
 sudo nano /etc/systemd/system/nextcloud-sync.service
 ```
 
 2. Add the following content to the file:
+
+```ini
+[Unit]
+Description=Nextcloud Folder Sync Service
+After=network.target
+
+[Service]
+User=root
+Environment="PATH=/root/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+WorkingDirectory=/path/to/your/project
+ExecStart=/bin/bash -lc 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate csv_pdf && /root/miniconda3/envs/csv_pdf/bin/python main.py'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+and
 
 ```ini
 [Unit]
@@ -135,16 +154,24 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 ```
 
-#### Step 3: Enable and Start the Service
+#### Step 3: Enable the Service
 
 ```bash
+sudo systemctl enable onboarding-system.service
 sudo systemctl enable nextcloud-sync.service
+```
+
+#### Step 4: Start the Service
+
+```bash
+sudo systemctl start onboarding-system.service
 sudo systemctl start nextcloud-sync.service
 ```
 
-#### Step 4: Check the Service Status
+#### Step 5: Check the Service Status
 
 ```bash
+sudo systemctl status onboarding-system.service
 sudo systemctl status nextcloud-sync.service
 ```
 
